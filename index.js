@@ -1,6 +1,6 @@
 // Firebase
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"
-import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
+import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
 const appSettings = {
     databaseURL: "https://bagit-86b57-default-rtdb.europe-west1.firebasedatabase.app/"
 }
@@ -16,8 +16,7 @@ const shoppingList = document.getElementById("shopping-list")
 // Event Listeners
 addButton.addEventListener("click", function() {
     let inputValue = inputField.value
-    // push(shoppingListInDB, inputValue)    
-    appendItem(inputValue)    
+    push(shoppingListInDB, inputValue)     
     clearInput()
     
 
@@ -28,8 +27,24 @@ function clearInput() {
     inputField.value = ""
 }
 
-function appendItem(item){
-    
+function clearShoppingList() {
+    shoppingList.innerHTML = ""
+}
+
+function appendItem(item){    
     shoppingList.innerHTML += `<li>${item}</li>`
 
 }
+
+// Firebase methods
+
+onValue(shoppingListInDB, function (snapshot) {
+    
+    let itemsArray = Object.values(snapshot.val())
+    clearShoppingList()
+
+    for (const item of itemsArray) {
+        appendItem(item)
+    }
+    
+})
