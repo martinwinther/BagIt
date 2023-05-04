@@ -3,8 +3,8 @@ body {
 	margin: 0;
 	padding: 0;
 	font-family: "Rubik", sans-serif;
-	background-color: #eef0f4;
-	color: #432000;
+	background-color: #d9e0e6;
+	color: #1c2b3a;
 	user-select: none;
 }
 
@@ -21,8 +21,8 @@ img {
 }
 
 input {
-	color: #432000;
-	background-color: #dce1eb;
+	color: #1c2b3a;
+	background-color: #a9b6c4;
 	border: 0;
 	padding: 15px;
 	border-radius: 8px;
@@ -34,7 +34,7 @@ input {
 
 button {
 	color: #fdfdfd;
-	background-color: #ac485a;
+	background-color: #3f4f8c;
 	border: 0;
 	padding: 15px;
 	border-radius: 8px;
@@ -44,7 +44,7 @@ button {
 }
 
 button:hover {
-	background-color: #432000;
+	background-color: #1c2b3a;
 	cursor: pointer;
 }
 
@@ -58,15 +58,15 @@ ul {
 
 ul li {
 	font-size: 20px;
-	background-color: #fffdf8;
+	background-color: #eef0f4;
 	padding: 15px;
 	border-radius: 8px;
 	flex-grow: 1;
 	text-align: center;
-	box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
+	box-shadow: inset 0px -1px 4px rgba(0, 0, 0, 0.1);
 }
 
 ul li:hover {
-	background-color: #ffecc7;
+	background-color: #c4ccd4; /* changed this color */
 	cursor: pointer;
 }
