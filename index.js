@@ -5,6 +5,7 @@ import {
 	ref,
 	push,
 	onValue,
+	remove,
 } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
 const appSettings = {
 	databaseURL:
@@ -29,13 +30,19 @@ addButton.addEventListener("click", function () {
 // Firebase methods
 
 onValue(shoppingListInDB, function (snapshot) {
-	let itemsArray = Object.entries(snapshot.val());
-	clearShoppingList();
+	// onValue runs anytime new items are added
 
-	for (const currentItem of itemsArray) {
-		let currentItemID = currentItem[0];
-		let currentItemValue = currentItem[1];
-		appendItem(currentItem);
+	if (snapshot.exists()) {
+		let itemsArray = Object.entries(snapshot.val());
+		clearShoppingList();
+
+		for (const currentItem of itemsArray) {
+			let currentItemID = currentItem[0];
+			let currentItemValue = currentItem[1];
+			appendItem(currentItem);
+		}
+	} else {
+		shoppingList.innerHTML = "No items here... yet";
 	}
 });
 
@@ -53,5 +60,11 @@ function appendItem(item) {
 	let itemValue = item[1];
 	let newItem = document.createElement("li");
 	newItem.textContent = itemValue;
+
+	newItem.addEventListener("click", function () {
+		let removedItem = ref(database, `shoppingList/${itemID}`);
+		remove(removedItem);
+	});
+
 	shoppingList.append(newItem);
 }
