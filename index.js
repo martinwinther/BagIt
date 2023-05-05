@@ -88,3 +88,6 @@ function createItem(itemID, itemValue) {
 	// Add the new item to the shopping list (which is an HTML element with the ID "shopping-list")
 	shoppingList.append(newItem);
 }
+
+// TODO:
+// Auth Function
